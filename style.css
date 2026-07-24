@@ -520,6 +520,14 @@ h2.sectitle{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(2rem,
   box-shadow:0 12px 30px rgba(43,182,149,.2), 0 0 15px rgba(43,182,149,.15); transform:translateY(-3px);
 }
 .btn-premium:hover i{transform:translateX(4px) translateY(-2px);}
+.btn-premium:disabled{opacity:.6; cursor:not-allowed; transform:none;}
+
+.cf-status{
+  margin-top:16px; font-size:.86rem; min-height:1.2em;
+  font-family:'JetBrains Mono';
+}
+.cf-status.ok{color:var(--cyan);}
+.cf-status.err{color:var(--pink);}
 
 /* ---------------------------------------------------------------------
    footer
