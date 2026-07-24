@@ -8,8 +8,8 @@ const certificates = [
     org: "University of Helsinki / MinnaLearn",
     date: "Jul 11, 2025",
     category: "Elements of AI",
-    thumb: "assets/certificates/elements-of-ai.png",
-    file: "assets/certificates/elements-of-ai.png",
+    thumb: "elements-of-ai.png",
+    file: "elements-of-ai.png",
     verify: "https://certificates.mooc.fi/validate/siok39wfafs"
   },
   {
@@ -17,17 +17,17 @@ const certificates = [
     org: "HP LIFE / HP Foundation",
     date: "Aug 3, 2025",
     category: "AI Certificates",
-    thumb: "assets/certificates/ai-for-beginners.jpeg",
-    file: "assets/certificates/ai-for-beginners.jpeg",
-    verify: "assets/certificates/ai-for-beginners.jpeg"
+    thumb: "ai-for-beginners.jpeg",
+    file: "ai-for-beginners.jpeg",
+    verify: "ai-for-beginners.jpeg"
   },
   {
     title: "Data Analytics and Business Intelligence",
     org: "DigiSkills.pk · Ignite / Virtual University",
     date: "Dec 17, 2025",
     category: "Data Analytics & Business Intelligence",
-    thumb: "assets/certificates/digiskills-analytics.jpeg",
-    file: "assets/certificates/digiskills-analytics.jpeg",
+    thumb: "digiskills-analytics.jpeg",
+    file: "digiskills-analytics.jpeg",
     verify: "https://digiskills.pk/verify"
   },
   {
@@ -35,8 +35,8 @@ const certificates = [
     org: "DigiSkills.pk · Ignite / Virtual University",
     date: "Dec 17, 2025",
     category: "Freelancer",
-    thumb: "assets/certificates/digiskills-freelancing.jpeg",
-    file: "assets/certificates/digiskills-freelancing.jpeg",
+    thumb: "digiskills-freelancing.jpeg",
+    file: "digiskills-freelancing.jpeg",
     verify: "https://digiskills.pk/verify"
   },
   {
@@ -44,9 +44,9 @@ const certificates = [
     org: "DigiSkills.pk · Ignite / Virtual University",
     date: "Dec 17, 2025",
     category: "Trading",
-    thumb: "assets/certificates/trading certificate.jpeg",
-    file: "assets/certificates/trading certificate.jpeg",
-    verify: "https://Trading.binance/verify"
+    thumb: "trading certificate.jpeg",
+    file: "trading certificate.jpeg",
+    verify: "https://www.binance.com/"
   }
 ];
 
