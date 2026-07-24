@@ -19,7 +19,7 @@ const certificates = [
     category: "AI Certificates",
     thumb: "ai-for-beginners.jpeg",
     file: "ai-for-beginners.jpeg",
-    verify: "ai-for-beginners.jpeg"
+    verify: "assets/certificates/ai-for-beginners.jpeg"
   },
   {
     title: "Data Analytics and Business Intelligence",
@@ -46,7 +46,7 @@ const certificates = [
     category: "Trading",
     thumb: "trading certificate.jpeg",
     file: "trading certificate.jpeg",
-    verify: "https://www.binance.com/"
+    verify: "https://Trading.binance/verify"
   }
 ];
 
@@ -210,6 +210,69 @@ function renderSocialGrid(){
   `).join('');
 }
 renderSocialGrid();
+
+/* ============================================================
+   CONTACT FORM — sends to the backend in /backend (server.js)
+   ============================================================ */
+// Point this at wherever backend/server.js is running.
+// Local dev: http://localhost:4000/api/contact
+// Production: your deployed backend URL, e.g.
+//   https://lihaz-contact-backend.onrender.com/api/contact
+const CONTACT_API_URL = "http://localhost:4000/api/contact";
+
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  const statusEl = document.getElementById('cf-status');
+  const submitBtn = document.getElementById('cf-submit');
+
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const payload = {
+      name: document.getElementById('cf-name').value.trim(),
+      email: document.getElementById('cf-email').value.trim(),
+      subject: document.getElementById('cf-subject').value.trim(),
+      message: document.getElementById('cf-message').value.trim(),
+      company: document.getElementById('cf-company').value.trim() // honeypot
+    };
+
+    if (!payload.name || !payload.email || !payload.message) {
+      statusEl.textContent = 'Please fill in your name, email, and message.';
+      statusEl.className = 'cf-status err';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    const originalLabel = submitBtn.querySelector('span').textContent;
+    submitBtn.querySelector('span').textContent = 'Sending…';
+    statusEl.textContent = '';
+    statusEl.className = 'cf-status';
+
+    try {
+      const res = await fetch(CONTACT_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && data.ok) {
+        statusEl.textContent = "Message sent — I'll get back to you soon.";
+        statusEl.className = 'cf-status ok';
+        contactForm.reset();
+      } else {
+        statusEl.textContent = data.error || 'Something went wrong. Please try again or email directly.';
+        statusEl.className = 'cf-status err';
+      }
+    } catch (err) {
+      statusEl.textContent = "Couldn't reach the server. Please try again or email directly.";
+      statusEl.className = 'cf-status err';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.querySelector('span').textContent = originalLabel;
+    }
+  });
+}
 
 /* ============================================================
    MOBILE MENU
