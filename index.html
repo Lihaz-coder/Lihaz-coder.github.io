@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lihaz Ahmad — BS Artificial Intelligence</title>
+<meta name="description" content="Lihaz Ahmad — BS Artificial Intelligence student at Bacha Khan University Charsadda. Portfolio, certificates, and academic record.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- signal rail : scroll progress + section index (signature element) -->
+<div class="signal-rail" aria-hidden="true">
+  <div class="signal-track"><div class="signal-fill" id="signalFill"></div></div>
+</div>
+
+<canvas id="netbg"></canvas>
+
+<header>
+  <nav class="wrap">
+    <a class="brand" href="#top">
+      <span class="mark"><img src="pictures/logo-4k.jpg" alt="Lihaz Ahmad logo"></span>
+      <span class="brandtext">LIHAZ<span class="brandsuffix">.me</span></span>
+    </a>
+    <div class="navlinks" id="navlinks">
+      <a href="#about" data-nav>About</a>
+      <a href="#education" data-nav>Education</a>
+      <a href="#experience" data-nav>Experience</a>
+      <a href="#skills" data-nav>Skills</a>
+      <a href="#certificates" data-nav>Certificates</a>
+      <a href="#dashboard" data-nav>Dashboard</a>
+      <a href="#projects" data-nav>Projects</a>
+      <a href="#contact" data-nav>Contact</a>
+    </div>
+    <div class="navright">
+      <a href="#contact" class="btn btn-primary btn-nav">Let's talk</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- mobile menu -->
+<div id="mobileMenu" class="mobile-menu">
+  <div class="mobile-menu-inner">
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#certificates">Certificates</a>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="heroGrid">
+      <div class="reveal show">
+        <div class="eyebrow"><span class="ping"></span> BS Artificial Intelligence · 6th Semester Complete</div>
+        <h1>Lihaz Ahmad<br><span class="grad">builds with AI.</span></h1>
+        <p class="sub typing-line"><span class="typing-prefix">I'm a</span><span class="typing-text" id="typingText"></span><span class="typing-cursor">|</span></p>
+        <p class="sub-body">A digital identity platform for my academic record, certificates, and projects — built by an AI student, for a career in AI.</p>
+        <p class="uni">Currently at <b>Bacha Khan University Charsadda</b> · Charsadda, Khyber Pakhtunkhwa, Pakistan</p>
+        <div class="herobtns">
+          <a href="#certificates" class="btn btn-primary">View Certificates <span class="arrow">→</span></a>
+          <a href="#contact" class="btn btn-ghost">Contact Me</a>
+        </div>
+        <div class="heroMeta reveal show">
+          <div class="metaCard"><span>Program</span><strong>BS Artificial Intelligence</strong></div>
+          <div class="metaCard"><span>Archive</span><strong id="certArchiveCount">3 verified certificates</strong></div>
+          <div class="metaCard"><span>Location</span><strong>Charsadda, KP, Pakistan</strong></div>
+        </div>
+      </div>
+      <div class="heroVisual reveal show">
+        <div class="idcard">
+          <div class="idcard-glow"></div>
+          <div class="idcard-shine"></div>
+          <div class="photo">
+            <img src="pictures/1111.jpeg" alt="Lihaz Ahmad portrait">
+          </div>
+          <h3>Lihaz Ahmad</h3>
+          <div class="role">BS Artificial Intelligence</div>
+          <div class="idrow"><span>Status</span><span>6th Semester Completed</span></div>
+          <div class="idrow"><span>University</span><span>Bacha Khan Univ. Charsadda</span></div>
+          <div class="idrow"><span>Location</span><span>Charsadda, KP, Pakistan</span></div>
+          <div class="idrow"><span>Certificates</span><span id="certCountId">3 Verified</span></div>
+          <div class="idrow"><span>Focus</span><span>AI · Data Analytics · ML</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"><span></span>scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="kicker">01 / About</div>
+    <h2 class="sectitle reveal">The person behind the model</h2>
+    <div class="aboutGrid">
+      <div class="reveal">
+        <p>I'm an Artificial Intelligence undergraduate at Bacha Khan University Charsadda, currently past the halfway mark of my degree. My interest in AI didn't start in a classroom — it started with curiosity about how machines learn to make decisions, and it's kept me building ever since.</p>
+        <p>Alongside my coursework, I've completed independent training in data analytics, business intelligence, and applied AI fundamentals — stacking practical, verifiable skills on top of my academic foundation.</p>
+        <p>My goal is straightforward: become an AI practitioner capable of building systems that are useful, explainable, and grounded in real data — while contributing to a growing tech ecosystem in Khyber Pakhtunkhwa.</p>
+      </div>
+      <div class="statgrid reveal">
+        <div class="statcard"><div class="num">6th</div><div class="lbl">Semester completed, BS AI</div></div>
+        <div class="statcard"><div class="num">3+</div><div class="lbl">Verified certifications</div></div>
+        <div class="statcard"><div class="num">722</div><div class="lbl">/1100 — Intermediate (Grade B)</div></div>
+        <div class="statcard"><div class="num">2025</div><div class="lbl">Year of latest certification</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="alt">
+  <div class="wrap">
+    <div class="kicker">02 / Education</div>
+    <h2 class="sectitle reveal">Academic timeline</h2>
+    <p class="secintro reveal">From secondary school in Charsadda to an Artificial Intelligence degree — every stage, documented.</p>
+    <div class="timeline">
+      <div class="titem active reveal">
+        <div class="tdate">2024 — PRESENT</div>
+        <h4>BS Artificial Intelligence</h4>
+        <div class="tsub">Bacha Khan University Charsadda (BKUC) · Charsadda, KP</div>
+        <span class="tbadge">6th Semester Completed</span>
+        <span class="tbadge">In Progress</span>
+      </div>
+      <div class="titem reveal">
+        <div class="tdate">2021 — 2023</div>
+        <h4>Higher Secondary School Certificate (HSSC) — Pre-Engineering</h4>
+        <div class="tsub">Govt. Degree College Badragga, Malakand · BISE Malakand</div>
+        <span class="tbadge">722 / 1100 marks</span>
+        <span class="tbadge">Grade B</span>
+      </div>
+      <div class="titem reveal">
+        <div class="tdate">2020 — 2021</div>
+        <h4>Secondary School Certificate (SSC) — Science</h4>
+        <div class="tsub">Govt. High School Landi Shah, Charsadda · BISE Peshawar</div>
+        <span class="tbadge">688 / 1100 marks</span>
+        <span class="tbadge">Grade B · "Very Good"</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE / TRAINING -->
+<section id="experience">
+  <div class="wrap">
+    <div class="kicker">03 / Experience</div>
+    <h2 class="sectitle reveal">Training & applied learning</h2>
+    <p class="secintro reveal">I'm early in my career — no employer history yet — but here's the hands-on training I've completed outside the classroom, in the order it happened.</p>
+    <div class="timeline">
+      <div class="titem active reveal">
+        <div class="tdate">AUG — DEC 2025</div>
+        <h4>Data Analytics and Business Intelligence Training</h4>
+        <div class="tsub">DigiSkills.pk · Ignite National Technology Fund / Virtual University of Pakistan</div>
+        <span class="tbadge">DSTP 3.0 · Batch 01</span>
+        <span class="tbadge">Certificate ID: 4CB3MRXMK</span>
+      </div>
+      <div class="titem reveal">
+        <div class="tdate">JUL 2025</div>
+        <h4>Elements of AI</h4>
+        <div class="tsub">University of Helsinki × MinnaLearn — 2 ECTS online course</div>
+        <span class="tbadge">Completed with certificate</span>
+      </div>
+      <div class="titem reveal">
+        <div class="tdate">AUG 2025</div>
+        <h4>AI for Beginners</h4>
+        <div class="tsub">HP LIFE / HP Foundation online course</div>
+        <span class="tbadge">AI concepts, data, ethics</span>
+      </div>
+    </div>
+    <p class="tnote">Looking for my first internship or research assistantship — see <a href="#contact">Contact</a>.</p>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="alt">
+  <div class="wrap">
+    <div class="kicker">04 / Skills</div>
+    <h2 class="sectitle reveal">What I work with</h2>
+    <div class="skillGrid">
+      <div class="skillcol reveal">
+        <h4>Technical</h4>
+        <div class="skillrow"><div class="top"><span>Python</span><span>72%</span></div><div class="track"><div class="fill" data-w="72"></div></div></div>
+        <div class="skillrow"><div class="top"><span>Artificial Intelligence Fundamentals</span><span>78%</span></div><div class="track"><div class="fill" data-w="78"></div></div></div>
+        <div class="skillrow"><div class="top"><span>Machine Learning</span><span>60%</span></div><div class="track"><div class="fill" data-w="60"></div></div></div>
+        <div class="skillrow"><div class="top"><span>Generative AI</span><span>55%</span></div><div class="track"><div class="fill" data-w="55"></div></div></div>
+        <div class="skillrow"><div class="top"><span>Data Analytics & BI</span><span>70%</span></div><div class="track"><div class="fill" data-w="70"></div></div></div>
+      </div>
+      <div class="skillcol reveal">
+        <h4>Working with</h4>
+        <div class="tagcloud">
+          <span class="tag">Elements of AI</span>
+          <span class="tag">Business Intelligence</span>
+          <span class="tag">Freelancing Basics</span>
+          <span class="tag">Problem Solving</span>
+          <span class="tag">Communication</span>
+          <span class="tag">Research</span>
+          <span class="tag">Presentation</span>
+          <span class="tag">Digital Skills</span>
+        </div>
+        <h4 class="tagheading">Certified in</h4>
+        <div class="tagcloud">
+          <span class="tag tag-accent">DigiSkills.pk — DSTP 3.0</span>
+          <span class="tag tag-accent">HP LIFE</span>
+          <span class="tag tag-accent">University of Helsinki / MinnaLearn</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section id="certificates">
+  <div class="wrap">
+    <div class="kicker">05 / Archive</div>
+    <h2 class="sectitle reveal">Certificates & documents</h2>
+    <p class="secintro reveal">A living, filterable archive. New certificates get added here as they're earned — no redesign required.</p>
+
+    <div class="certToolbar reveal">
+      <div class="searchbox"><input type="text" id="certSearch" placeholder="Search certificates…"></div>
+      <div class="filters" id="certFilters"></div>
+    </div>
+
+    <div class="certGrid" id="certGrid"></div>
+  </div>
+</section>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="alt">
+  <div class="wrap">
+    <div class="kicker">06 / Snapshot</div>
+    <h2 class="sectitle reveal">Progress dashboard</h2>
+    <p class="secintro reveal">A live-updating summary of where things stand — pulled from the same data that powers the sections above.</p>
+    <div class="statgrid dashgrid reveal" id="dashGrid"></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="kicker">07 / Projects</div>
+    <h2 class="sectitle reveal">Selected work</h2>
+    <p class="secintro reveal">Projects will populate here as they ship. This slot is wired to grow with the portfolio.</p>
+    <div class="projGrid" id="projGrid"></div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements" class="alt">
+  <div class="wrap">
+    <div class="kicker">08 / Achievements</div>
+    <h2 class="sectitle reveal">Milestones</h2>
+    <div class="achWrap" id="achWrap"></div>
+  </div>
+</section>
+
+<!-- SOCIAL SECTION -->
+<section id="social">
+    <div class="wrap">
+        <div class="kicker">09 / Connect</div>
+        <h2 class="sectitle reveal">Find me online</h2>
+        <p class="secintro reveal">Reach out on whichever platform is easiest — every link goes straight to a real profile.</p>
+        <div class="socialGrid" id="socialGrid"></div>
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="alt">
+  <div class="wrap">
+    <div class="kicker">10 / Contact</div>
+    <h2 class="sectitle reveal">Let's talk business</h2>
+    <p class="secintro reveal">Open to internships, collaborations, and freelance data/AI work. Drop a message!</p>
+    
+    <div class="contactGrid">
+      <!-- Contact Details -->
+      <div class="reveal contactInfoWrapper">
+        <div class="cinfo-item">
+          <div class="ci"><i class="fa-regular fa-envelope"></i></div>
+          <div class="ctext">
+            <div class="clabel">Email Address</div>
+            <a href="mailto:jsbbzbnx@gmail.com" class="cval contact-link">jsbbzbnx@gmail.com</a>
+          </div>
+        </div>
+        
+        <div class="cinfo-item">
+          <div class="ci"><i class="fa-brands fa-whatsapp"></i></div>
+          <div class="ctext">
+            <div class="clabel">WhatsApp</div>
+            <a href="https://wa.me/923479253967" target="_blank" rel="noopener noreferrer" class="cval contact-link">+92 347 9253967</a>
+          </div>
+        </div>
+
+        <div class="cinfo-item">
+          <div class="ci"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="ctext">
+            <div class="clabel">Location</div>
+            <div class="cval">Charsadda, Khyber Pakhtunkhwa, Pakistan</div>
+          </div>
+        </div>
+
+        <div class="cinfo-item">
+          <div class="ci"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="ctext">
+            <div class="clabel">University</div>
+            <div class="cval">Bacha Khan University Charsadda</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Premium Form -->
+      <form class="reveal contact-form" onsubmit="event.preventDefault(); alert('Message ready — connect a form service (e.g. Formspree) to send this live.');">
+        <div class="formgrid">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label>Your Email</label>
+            <input type="email" placeholder="john@example.com" required>
+          </div>
+          <div class="form-group full">
+            <label>Subject</label>
+            <input type="text" placeholder="Project Collaboration / Data Architecture Consultancy">
+          </div>
+          <div class="form-group full">
+            <label>Message</label>
+            <textarea rows="5" placeholder="Tell me about your project timelines and technical requirements..." required></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-premium">
+          <span>Send Secure Message</span>
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footGrid">
+      <a class="brand" href="#top">
+        <span class="mark"><img src="pictures/logo-4k.jpg" alt="Lihaz Ahmad logo"></span>
+        <span class="brandtext">LIHAZ<span class="brandsuffix">.AI</span></span>
+      </a>
+      <div class="footlinks">
+        <a href="#about">About</a><a href="#certificates">Certificates</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+      </div>
+      <button class="backtop" onclick="document.getElementById('top').scrollIntoView({behavior:'smooth'})" aria-label="Back to top">↑</button>
+    </div>
+    <div class="copyright">© 2026 Lihaz Ahmad · BS Artificial Intelligence, BKUC. Built as a living academic archive.</div>
+  </div>
+</footer>
+
+<!-- ASK ABOUT LIHAZ WIDGET -->
+<button class="faqBtn" id="faqBtn" aria-label="Ask about Lihaz">
+  <span class="faqBtn-icon"><i class="fa-solid fa-comment-dots"></i></span>
+</button>
+<div class="faqPanel" id="faqPanel">
+  <div class="faqHead">
+    <div>Ask about Lihaz<span class="sub">Quick answers, no typing needed</span></div>
+    <button class="faqClose" id="faqClose" aria-label="Close">✕</button>
+  </div>
+  <div class="faqBody" id="faqBody"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
