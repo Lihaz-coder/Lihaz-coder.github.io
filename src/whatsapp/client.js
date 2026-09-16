@@ -20,12 +20,23 @@ function authHeaders() {
 
 async function getMediaMetadata(mediaId) {
   assertNumericId(mediaId, 'media id');
+  const safeMediaId = String(mediaId);
 
-  const response = await axios.get(`${apiBaseUrl()}/${mediaId}`, {
+  const response = await axios.get(apiBaseUrl(), {
     timeout: config.requestTimeoutMs,
     headers: authHeaders(),
+    params: {
+      ids: safeMediaId,
+      fields: 'url,mime_type',
+    },
   });
-  return response.data;
+
+  const mediaMetadata = response.data?.[safeMediaId];
+  if (!mediaMetadata) {
+    throw new Error('Unable to retrieve media metadata.');
+  }
+
+  return mediaMetadata;
 }
 
 async function sendTextMessage(to, body) {
