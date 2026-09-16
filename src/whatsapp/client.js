@@ -5,6 +5,12 @@ function apiBaseUrl() {
   return `https://graph.facebook.com/${config.whatsappApiVersion}`;
 }
 
+function assertNumericId(value, fieldName) {
+  if (!/^[0-9]+$/.test(String(value || ''))) {
+    throw new Error(`Invalid ${fieldName}.`);
+  }
+}
+
 function authHeaders() {
   return {
     Authorization: 'Bearer ' + config.whatsappToken,
@@ -13,6 +19,8 @@ function authHeaders() {
 }
 
 async function getMediaMetadata(mediaId) {
+  assertNumericId(mediaId, 'media id');
+
   const response = await axios.get(`${apiBaseUrl()}/${mediaId}`, {
     timeout: config.requestTimeoutMs,
     headers: authHeaders(),
