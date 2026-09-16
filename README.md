@@ -1,70 +1,129 @@
-# lihaz.me — contact form backend
+# WhatsApp AI Image-to-Prompt Bot
 
-A tiny Express server that receives the portfolio's contact form and emails it
-to `jsbbzbnx@gmail.com`. Your site itself (index.html/style.css/script.js)
-stays a static site — only this small service needs to run somewhere with
-Node.js.
+Production-ready Node.js bot that only handles WhatsApp image messages and returns one polished AI image-generation prompt.
 
-## 1. Run it locally
+## What it does
+
+1. Receives WhatsApp webhook events.
+2. Verifies webhook challenge and validates signatures (when `WHATSAPP_APP_SECRET` is set).
+3. Accepts only image/photo messages for analysis.
+4. Downloads image securely from WhatsApp Cloud API.
+5. Sends image to OpenAI vision model.
+6. Builds one professional prompt in the required structure.
+7. Sends prompt back to the same WhatsApp user.
+
+If user sends only text (or other unsupported message types), bot replies:
+
+`Please send an image/photo. I will create a detailed AI image-generation prompt from it.`
+
+## Project structure
+
+```text
+/
+├── src/
+│   ├── server/
+│   │   ├── config.js
+│   │   └── index.js
+│   ├── whatsapp/
+│   │   ├── client.js
+│   │   ├── handlers.js
+│   │   └── webhookSecurity.js
+│   ├── ai/
+│   │   └── visionService.js
+│   ├── image/
+│   │   └── mediaService.js
+│   ├── prompts/
+│   │   └── promptBuilder.js
+│   └── utils/
+│       ├── http.js
+│       └── logger.js
+├── .env.example
+├── .gitignore
+├── package.json
+├── server.js
+└── README.md
+```
+
+## Required environment variables
+
+Copy `.env.example` to `.env` and fill values:
+
+- `PORT`
+- `REQUEST_TIMEOUT_MS`
+- `TEMP_DIR`
+- `WHATSAPP_VERIFY_TOKEN`
+- `WHATSAPP_ACCESS_TOKEN`
+- `WHATSAPP_PHONE_NUMBER_ID`
+- `WHATSAPP_API_VERSION`
+- `WHATSAPP_APP_SECRET` (strongly recommended for signature validation)
+- `OPENAI_API_KEY`
+- `OPENAI_VISION_MODEL`
+
+## Local development
 
 ```bash
-cd backend
+cd /home/runner/work/Lihaz-coder.github.io/Lihaz-coder.github.io
 npm install
 cp .env.example .env
+npm run dev
 ```
 
-Edit `.env`:
-- `SMTP_USER` — your Gmail address
-- `SMTP_PASS` — a Gmail **App Password** (not your normal password):
-  1. Turn on 2-Step Verification on the Google account: https://myaccount.google.com/security
-  2. Go to https://myaccount.google.com/apppasswords
-  3. Create an app password for "Mail" and paste the 16-character code in as `SMTP_PASS`
-
-  (Any other SMTP provider — SendGrid, Mailgun, Resend, your web host — works
-  too; just change `SMTP_HOST`/`SMTP_PORT`/`SMTP_USER`/`SMTP_PASS`.)
-
-Then start it:
+Health check:
 
 ```bash
-npm start
+curl http://localhost:4000/health
 ```
 
-It runs on `http://localhost:4000`. Test it:
+## WhatsApp webhook configuration
 
-```bash
-curl http://localhost:4000/api/health
-```
+In Meta WhatsApp App Dashboard:
 
-## 2. Point the frontend at it
+1. Open **WhatsApp > Configuration > Webhook**.
+2. Set callback URL to your deployed `/webhook` endpoint.
+3. Set verify token to exactly `WHATSAPP_VERIFY_TOKEN` value.
+4. Subscribe to `messages` webhook field.
+5. Make sure `WHATSAPP_ACCESS_TOKEN` and `WHATSAPP_PHONE_NUMBER_ID` are from the same WhatsApp Cloud API setup.
+6. Add `WHATSAPP_APP_SECRET` to enable request signature validation.
 
-In `script.js`, set `CONTACT_API_URL` to wherever this backend is running
-(the frontend file already reads this — see the top of the "contact form"
-section). For local testing that's `http://localhost:4000/api/contact`;
-in production it'll be your deployed backend URL, e.g.
-`https://lihaz-contact-backend.onrender.com/api/contact`.
+Webhook endpoints provided by app:
 
-## 3. Deploy it (free options)
+- `GET /webhook` for verification challenge.
+- `POST /webhook` for incoming messages.
 
-This needs a host that runs Node.js — GitHub Pages/Netlify/Vercel static
-hosting alone won't run `server.js`. Easiest free options:
+## Deployment (production)
 
-**Render.com**
-1. Push the `backend/` folder to a GitHub repo (or a subfolder of your site's repo)
-2. New → Web Service → connect the repo, set root directory to `backend`
-3. Build command: `npm install` — Start command: `npm start`
-4. Add the same environment variables from `.env` in Render's dashboard
-5. Deploy — you'll get a URL like `https://your-app.onrender.com`
+Deploy as a Node.js web service (Render, Railway, Fly.io, VPS, etc.):
 
-**Railway.app** — same idea: connect repo, set root to `backend`, add env vars, deploy.
+1. Connect repository.
+2. Set start command: `npm start`.
+3. Add all environment variables from `.env.example`.
+4. Ensure HTTPS is enabled (required for Meta webhook callback).
+5. Configure webhook callback URL to `https://your-domain/webhook`.
 
-Once deployed, update `ALLOWED_ORIGINS` in the backend's env vars to include
-`https://lihaz.me`, and update `CONTACT_API_URL` in `script.js` to the live
-backend URL.
+## Test by sending a photo
 
-## Notes
+1. Start/deploy service and verify webhook.
+2. Send a photo to the connected WhatsApp number.
+3. Bot should reply with:
+   - success header,
+   - one complete prompt,
+   - negative prompt block.
 
-- The form has a hidden honeypot field (`company`) for basic spam protection —
-  don't remove it from the HTML.
-- Rate limiting caps submissions at 5 per 10 minutes per IP.
-- The server never stores messages — it only relays them by email. Add a
-  database later if you want a message history.
+Text-only test:
+- Send plain text message.
+- Bot should return the required image-only guidance message.
+
+## Error handling and privacy
+
+- Invalid signatures are rejected when app secret is configured.
+- Unsupported messages are handled safely.
+- AI failures return:
+  `❌ I couldn't analyze this image right now. Please send the photo again.`
+- Images are temporarily stored in `TEMP_DIR` for processing and removed after completion.
+- No permanent image storage is performed by this service.
+
+## Notes / limitations
+
+- WhatsApp sandbox/business account setup must be completed in Meta first.
+- OpenAI billing and model access must be enabled for your key.
+- Bot is intentionally not a general chatbot; it is image-to-prompt only.
