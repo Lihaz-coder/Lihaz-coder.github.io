@@ -1,5 +1,5 @@
 const { config } = require('../server/config');
-const { getJson, postJson } = require('../utils/http');
+const axios = require('axios');
 
 function apiBaseUrl() {
   return `https://graph.facebook.com/${config.whatsappApiVersion}`;
@@ -13,13 +13,15 @@ function authHeaders() {
 }
 
 async function getMediaMetadata(mediaId) {
-  return getJson(`${apiBaseUrl()}/${mediaId}`, {
+  const response = await axios.get(`${apiBaseUrl()}/${mediaId}`, {
+    timeout: config.requestTimeoutMs,
     headers: authHeaders(),
   });
+  return response.data;
 }
 
 async function sendTextMessage(to, body) {
-  return postJson(
+  const response = await axios.post(
     `${apiBaseUrl()}/${config.whatsappPhoneNumberId}/messages`,
     {
       messaging_product: 'whatsapp',
@@ -32,9 +34,11 @@ async function sendTextMessage(to, body) {
       },
     },
     {
+      timeout: config.requestTimeoutMs,
       headers: authHeaders(),
     },
   );
+  return response.data;
 }
 
 function extractIncomingMessages(payload) {

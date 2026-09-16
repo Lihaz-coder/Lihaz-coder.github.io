@@ -35,7 +35,6 @@ If user sends only text (or other unsupported message types), bot replies:
 │   ├── prompts/
 │   │   └── promptBuilder.js
 │   └── utils/
-│       ├── http.js
 │       └── logger.js
 ├── .env.example
 ├── .gitignore

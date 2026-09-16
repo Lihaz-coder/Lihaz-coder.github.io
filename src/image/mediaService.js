@@ -3,7 +3,21 @@ const fs = require('fs/promises');
 const path = require('path');
 const axios = require('axios');
 const { config } = require('../server/config');
-const { assertTrustedUrl } = require('../utils/http');
+
+const ALLOWED_MEDIA_HOSTS = new Set(['lookaside.fbsbx.com', 'graph.facebook.com']);
+
+function assertTrustedMediaUrl(url) {
+  const parsed = new URL(url);
+  const hostname = parsed.hostname.toLowerCase();
+  const isAllowedSubdomain = hostname.endsWith('.lookaside.fbsbx.com');
+
+  if (
+    parsed.protocol !== 'https:' ||
+    (!ALLOWED_MEDIA_HOSTS.has(hostname) && !isAllowedSubdomain)
+  ) {
+    throw new Error('Blocked untrusted media URL.');
+  }
+}
 
 async function ensureTempDir() {
   await fs.mkdir(config.tempDir, { recursive: true });
@@ -11,7 +25,7 @@ async function ensureTempDir() {
 
 async function downloadBinaryToTemp(url, headers = {}, extension = 'bin') {
   await ensureTempDir();
-  assertTrustedUrl(url);
+  assertTrustedMediaUrl(url);
 
   const safeExtension = extension.replace(/[^a-z0-9]/gi, '').toLowerCase() || 'bin';
   const filename = `${Date.now()}-${crypto.randomUUID()}.${safeExtension}`;
