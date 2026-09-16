@@ -1,4 +1,3 @@
-const path = require('path');
 const { analyzeImageForPrompt } = require('../ai/visionService');
 const { downloadBinaryToTemp, fileToDataUrl, cleanupFile } = require('../image/mediaService');
 const { buildFinalPrompt } = require('../prompts/promptBuilder');

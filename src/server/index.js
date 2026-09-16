@@ -25,9 +25,10 @@ app.get('/health', (_req, res) => {
 app.get('/webhook', (req, res) => {
   const mode = req.query['hub.mode'];
   const token = req.query['hub.verify_token'];
-  const challenge = req.query['hub.challenge'];
+  const challenge = String(req.query['hub.challenge'] || '');
+  const isValidChallenge = /^[0-9]+$/.test(challenge);
 
-  if (mode === 'subscribe' && token === config.verifyToken) {
+  if (mode === 'subscribe' && token === config.verifyToken && isValidChallenge) {
     logger.info('Webhook verification succeeded.');
     return res.status(200).send(challenge);
   }

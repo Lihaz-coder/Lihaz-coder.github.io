@@ -3,6 +3,7 @@ const fs = require('fs/promises');
 const path = require('path');
 const axios = require('axios');
 const { config } = require('../server/config');
+const { assertTrustedUrl } = require('../utils/http');
 
 async function ensureTempDir() {
   await fs.mkdir(config.tempDir, { recursive: true });
@@ -10,6 +11,7 @@ async function ensureTempDir() {
 
 async function downloadBinaryToTemp(url, headers = {}, extension = 'bin') {
   await ensureTempDir();
+  assertTrustedUrl(url);
 
   const safeExtension = extension.replace(/[^a-z0-9]/gi, '').toLowerCase() || 'bin';
   const filename = `${Date.now()}-${crypto.randomUUID()}.${safeExtension}`;
