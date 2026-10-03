@@ -1,10 +1,14 @@
-import { ModulePage } from "@/components/dashboard/module-page";
+import { StudentFormDemo } from "@/components/dashboard/student-form-demo";
+import { PageHeader } from "@/components/layout/dashboard/page-header";
 
 export default function SettingsModulePage() {
   return (
-    <ModulePage
-      title="Settings"
-      description="Settings placeholder for Milestone 1 foundation."
-    />
+    <div className="space-y-6">
+      <PageHeader
+        title="Settings"
+        description="Form design system examples using React Hook Form, Zod, and shadcn components."
+      />
+      <StudentFormDemo />
+    </div>
   );
 }
